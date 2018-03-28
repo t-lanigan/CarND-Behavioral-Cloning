@@ -42,7 +42,7 @@ Udacity created a simulator based on the Unity engine that uses real game physic
 
 ## Approach
 
-The car simulation is designed to take in a video from a left, front and center camera in conjunction with a measured steering angle of the car. The videos are split into still frames, and used to train a regression model with the target value being the steering angle. As Convolutional Neural Networks do very well in image classification, they are used in this problem.
+The car simulation is designed to take in a video from a left, front and center camera in conjunction with a measured steering angle of the car. The videos are split into still frames, and used to train a regression model with the target value being the steering angle. As Convolution Neural Networks do very well in image classification, they are used in this problem.
 
 In order to design the network, I first did research on what was previously done. The solution documented in the [NVIDIA Paper](http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf), in which raw pixels are mapped steering commands, is very similar to our problem. The Nvidia architecture is relatively small with only 9 layers, meaning that design iteration can take place quickly. 
 
@@ -61,11 +61,11 @@ The final architecture is given below:
 
 ### Activation
 
-For activations, after reading the [paper on ELU Activations](https://arxiv.org/pdf/1511.07289v1.pdf) I decided to use ELUs. ELU activations offer the same protection against vanishing gradiant as RELU, and in addition, ELUs protect against the ['dying neuron problem](https://www.quora.com/What-is-the-dying-ReLU-problem-in-neural-networks).
+For activations, after reading the [paper on ELU Activations](https://arxiv.org/pdf/1511.07289v1.pdf) I decided to use ELUs. ELU activations offer the same protection against vanishing gradient as RELU, and in addition, ELUs protect against the ['dying neuron problem](https://www.quora.com/What-is-the-dying-ReLU-problem-in-neural-networks).
 
 ### Dropout
 
-I experimented with adding dropout to reduce over-fitting of the model. At first I added a small amount of dropout to every layer of the network. I found that the model began to underfit (i.e the training score and validation error were the same, but quite high). I removed dropout layer by layer until both the training, and validation scores were low and similar (roughly 0.0020 mean square error).
+I experimented with adding dropout to reduce over-fitting of the model. At first I added a small amount of dropout to every layer of the network. I found that the model began to under-fit (i.e the training score and validation error were the same, but quite high). I removed dropout layer by layer until both the training, and validation scores were low and similar (roughly 0.0020 mean square error).
 
 ## Data Collection
 
